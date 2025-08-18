@@ -1,6 +1,3 @@
-# electricity-futures-forecasting
-Forecast spot and futures electricity prices using statistical, machine learning, and deep learning models. Compare model performance and highlight implications for hedge funds and quantitative trading.
-
 # Electricity Futures Forecasting 🔌📈
 
 **Goal:** Forecast electricity spot/futures prices using statistical models and ML (ARIMA, LightGBM, optional LSTM).  

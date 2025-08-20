@@ -1,0 +1,11 @@
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.5.1
+pmdarima==2.0.4
+lightgbm
+yfinance
+matplotlib
+pandas
+tqdm
+pyarrow
+tensorflow

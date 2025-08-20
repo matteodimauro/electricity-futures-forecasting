@@ -1,0 +1,18 @@
+name: electricity
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy=1.26.4
+  - scipy=1.13.1
+  - scikit-learn=1.5.1
+  - matplotlib
+  - pandas
+  - lightgbm
+  - pyarrow
+  - tqdm
+  - pip
+  - pip:
+      - pmdarima==2.0.4
+      - yfinance
+      - tensorflow

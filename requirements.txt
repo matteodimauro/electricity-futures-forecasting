@@ -8,4 +8,6 @@ matplotlib
 pandas
 tqdm
 pyarrow
-tensorflow
+# TensorFlow on Mac
+tensorflow-macos==2.16.2
+tensorflow-metal==1.1.0

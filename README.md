@@ -247,3 +247,58 @@ Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimat
 *Limitations:* purely linear, struggles with regime shifts and nonlinear effects, requires stationarity.
 
 ---
+
+## 📘 Modeling Note: Backtesting & Rolling Forecasts
+
+### 🔹 Why Backtesting?
+In financial and energy markets, it is not enough to split the dataset once into train/test.  
+Markets evolve, seasonality shifts, and shocks (e.g., weather, gas prices, policy changes) can strongly affect electricity prices.  
+
+👉 **Backtesting** simulates how a forecasting model would have performed historically if it had been deployed in real time.  
+This gives hedge funds and traders a more reliable picture of **out-of-sample performance**.
+
+---
+
+### 🔹 How Backtesting Works
+Instead of training once, we use a **rolling time window**:
+
+1. **Train** the model on a historical window (e.g., 2 years of daily electricity futures).  
+2. **Forecast** the next horizon (e.g., 22 trading days ≈ 1 month).  
+3. **Roll the window forward** in time and repeat.  
+   - Either **fixed length** (rolling window), or  
+   - **Expanding length** (always include all past data).  
+
+At each step, the model only uses **past information**, never “peeking into the future.”
+
+---
+
+### 🔹 Why Not Random Cross-Validation?
+- Standard ML cross-validation shuffles the data, which would leak **future prices into the past** — unrealistic in finance.  
+- Time series requires **time-aware validation**: train on the past → test on the future.  
+
+This prevents information leakage and makes evaluation closer to **real-world trading conditions**.
+
+---
+
+### 🔹 Example (Electricity Futures)
+Suppose we forecast daily futures prices from **2021 to 2023**:
+
+1. Train: 2021–2022 → Test: Jan 2023  
+2. Train: 2021–Feb 2023 → Test: Mar 2023  
+3. Train: 2021–Mar 2023 → Test: Apr 2023  
+… and so on, until the end of the dataset.  
+
+Each step mimics how a hedge fund would actually use the model: **fit on history, trade on the next period**.
+
+---
+
+### 🔹 Why This Matters for Hedge Funds
+- Provides **robust performance evaluation** across multiple regimes.  
+- Shows how the model behaves during **shocks** (spikes, crashes) vs **stable markets**.  
+- Enables **strategy stress-testing** before real capital is deployed.  
+
+---
+
+### 🔹 Key Takeaway
+Backtesting in this project uses a **rolling-window forecast evaluation**.  
+It is the industry-standard technique in **quant finance and energy trading** to assess whether a forecasting model (ARIMA, ARIMAX, LightGBM) is truly reliable out-of-sample.

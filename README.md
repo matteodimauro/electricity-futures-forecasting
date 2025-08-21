@@ -176,61 +176,61 @@ The model is written as **ARIMA(p, d, q)**, where:
 
 ---
 
-### 🔹 1. Stationarity
+### 1. Stationarity
 ARIMA assumes stationarity: the mean, variance, and autocorrelation are stable over time.  
 If the series is non-stationary (common in prices), we apply **differencing**:  
-\[
+$
 \Delta Y_t = Y_t - Y_{t-1}
-\]  
+$
 
 ---
 
-### 🔹 2. AR (AutoRegressive) Part
-\[
+### 2. AR (AutoRegressive) Part
+$
 Y_t = \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + ... + \phi_p Y_{t-p} + \epsilon_t
-\]  
+$
 - Current value depends on past values.  
 - Coefficients \( \phi_i \) measure persistence.
 
 ---
 
-### 🔹 3. MA (Moving Average) Part
-\[
+### 3. MA (Moving Average) Part
+$
 Y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + ... + \theta_q \epsilon_{t-q}
-\]  
+$
 - Current value depends on past forecast errors.  
 - Coefficients \( \theta_j \) measure how shocks propagate.  
 
 ---
 
-### 🔹 4. ARIMA(p, d, q)
+### 4. ARIMA(p, d, q)
 General form after differencing:
-\[
+$
 \Delta^d Y_t = \phi_1 \Delta^d Y_{t-1} + ... + \phi_p \Delta^d Y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}
-\]
+$
 
 ---
 
-### 🔹 5. Model Identification
+### 5. Model Identification
 - **ACF/PACF plots** help select p and q.  
 - **Information criteria (AIC, BIC)** compare candidate models.  
 - Automated tools (`auto_arima`) streamline the process.  
 
 ---
 
-### 🔹 6. Estimation
+### 6. Estimation
 Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimation (MLE)**.
 
 ---
 
-### 🔹 7. Forecasting
+### 7. Forecasting
 - AR terms propagate past values forward.  
 - MA terms use expected future errors = 0.  
 - Forecast uncertainty grows with horizon.  
 
 ---
 
-### 🔹 8. Extensions
+### 8. Extensions
 - **ARIMAX**: includes exogenous variables (e.g., weather, gas prices).  
 - **SARIMA**: adds seasonal components.  
 - **SARIMAX**: seasonal ARIMA with exogenous regressors.  
@@ -238,7 +238,7 @@ Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimat
 
 ---
 
-### 🔹 9. Why ARIMA Matters in Energy & Finance
+### 9. Why ARIMA Matters in Energy & Finance
 - Provides a **transparent, interpretable baseline**.  
 - Captures autocorrelation and short-term dependencies.  
 - Benchmark for more advanced models (LightGBM, LSTM).  
@@ -248,18 +248,18 @@ Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimat
 
 ---
 
-## 📘 Modeling Note: Backtesting & Rolling Forecasts
+## Modeling Note: Backtesting & Rolling Forecasts
 
-### 🔹 Why Backtesting?
+### Why Backtesting?
 In financial and energy markets, it is not enough to split the dataset once into train/test.  
 Markets evolve, seasonality shifts, and shocks (e.g., weather, gas prices, policy changes) can strongly affect electricity prices.  
 
-👉 **Backtesting** simulates how a forecasting model would have performed historically if it had been deployed in real time.  
+**Backtesting** simulates how a forecasting model would have performed historically if it had been deployed in real time.  
 This gives hedge funds and traders a more reliable picture of **out-of-sample performance**.
 
 ---
 
-### 🔹 How Backtesting Works
+### How Backtesting Works
 Instead of training once, we use a **rolling time window**:
 
 1. **Train** the model on a historical window (e.g., 2 years of daily electricity futures).  
@@ -272,7 +272,7 @@ At each step, the model only uses **past information**, never “peeking into th
 
 ---
 
-### 🔹 Why Not Random Cross-Validation?
+### Why Not Random Cross-Validation?
 - Standard ML cross-validation shuffles the data, which would leak **future prices into the past** — unrealistic in finance.  
 - Time series requires **time-aware validation**: train on the past → test on the future.  
 
@@ -280,7 +280,7 @@ This prevents information leakage and makes evaluation closer to **real-world tr
 
 ---
 
-### 🔹 Example (Electricity Futures)
+### Example (Electricity Futures)
 Suppose we forecast daily futures prices from **2021 to 2023**:
 
 1. Train: 2021–2022 → Test: Jan 2023  
@@ -292,13 +292,13 @@ Each step mimics how a hedge fund would actually use the model: **fit on history
 
 ---
 
-### 🔹 Why This Matters for Hedge Funds
+### Why This Matters for Hedge Funds
 - Provides **robust performance evaluation** across multiple regimes.  
 - Shows how the model behaves during **shocks** (spikes, crashes) vs **stable markets**.  
 - Enables **strategy stress-testing** before real capital is deployed.  
 
 ---
 
-### 🔹 Key Takeaway
+### Key Takeaway
 Backtesting in this project uses a **rolling-window forecast evaluation**.  
 It is the industry-standard technique in **quant finance and energy trading** to assess whether a forecasting model (ARIMA, ARIMAX, LightGBM) is truly reliable out-of-sample.

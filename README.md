@@ -124,8 +124,8 @@ It is widely applied in **finance, energy markets, insurance, and economics**, w
 - **Noise / Shocks:** random fluctuations not explained by structure.  
 - **Stationarity:** a time series whose statistical properties (mean, variance, autocorrelation) do not change over time.  
 - **Lag:** a past value of the series used as a predictor.  
-  - Example: if today is \( t \), then \( Y_{t-1} \) is the value of yesterday (lag-1),  
-    \( Y_{t-5} \) is last week (lag-5), and \( Y_{t-22} \) is last month (lag-22).  
+  - Example: if today is $\( t \)$, then $\( Y_{t-1} \)$ is the value of yesterday (lag-1),  
+    $\( Y_{t-5} \)$ is last week (lag-5), and $\( Y_{t-22} \)$ is last month (lag-22).  
   - Lags are crucial because financial and energy data often depend strongly on their past.
 
 ---
@@ -208,7 +208,7 @@ $\Delta^d Y_t = \phi_1 \Delta^d Y_{t-1} + ... + \phi_p \Delta^d Y_{t-p} + \epsil
 
 ---
 
-### 6. Estimation
+### 🔹 6. Estimation
 Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimation (MLE)**.
 
 ---

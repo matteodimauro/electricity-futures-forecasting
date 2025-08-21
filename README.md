@@ -208,7 +208,7 @@ $\Delta^d Y_t = \phi_1 \Delta^d Y_{t-1} + ... + \phi_p \Delta^d Y_{t-p} + \epsil
 
 ---
 
-### 🔹 6. Estimation
+### 6. Estimation
 Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimation (MLE)**.
 
 ---

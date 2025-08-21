@@ -34,21 +34,21 @@
 
 ---
 
-## 📘 Finance Note: Adjusted Close vs Close
+## Finance Note: Adjusted Close vs Close
 
 When working with financial data, it’s important to understand the difference between **Close** and **Adjusted Close** prices.
 
-### 🔹 Close
+### Close
 - The raw last trading price of the day.  
 - Does **not** account for dividends or stock splits.  
 - Can create misleading “jumps” in the time series.
 
-### 🔹 Adjusted Close
+### Adjusted Close
 - The closing price **corrected for dividends and stock splits**.  
 - Reflects the **true economic value** of holding the stock/ETF over time.  
 - Ensures the series is consistent for return calculations and modeling.
 
-### 🔹 Why Adjustments Matter
+### Why Adjustments Matter
 1. **Dividends**  
    - Example: A stock closes at \$100 and pays a \$2 dividend.  
    - Next day, raw Close ≈ \$98 (looks like a drop).  
@@ -59,34 +59,34 @@ When working with financial data, it’s important to understand the difference 
    - Market cap unchanged.  
    - Adjusted Close prevents the chart from showing a “crash”.
 
-### 🔹 Why use Adjusted Close in this project?
+### Why use Adjusted Close in this project?
 - For ETFs like **XLE**, dividends are significant.  
 - Hedge funds and quants typically use **Adjusted Close** to model **total return** series.  
 - Using Adjusted Close avoids spurious jumps and makes forecasting more realistic.
 
-👉 In short:  
+In short:  
 - **Close** = what was paid on that day.  
 - **Adjusted Close** = what matters for long-term performance and modeling.
 
 ---
 
-## 📘 Finance & Modeling Note: Lags and Trading Days
+## Finance & Modeling Note: Lags and Trading Days
 
-### 🔹 What is a Lag?
+### What is a Lag?
 In time series modeling, a **lag** means using past values of a variable to explain or forecast the present.
 
 - **Lag 1** = yesterday’s value  
 - **Lag 5** = value from 5 days ago  
 - **Lag 22** = value from ~1 trading month ago  
 
-👉 Example:  
+Example:  
 If today’s electricity price is correlated with the price from 7 days ago, then **lag 7** is useful as a predictor.
 
 Lags help capture **momentum, seasonality, and autocorrelation** in financial data.
 
 ---
 
-### 🔹 What is a Trading Day?
+### What is a Trading Day?
 A **trading day** is a day when financial markets are open.  
 - In the U.S. stock market, this excludes weekends and holidays.  
 - Roughly **252 trading days per year** (not 365).  
@@ -94,30 +94,30 @@ A **trading day** is a day when financial markets are open.
 
 ---
 
-### 🔹 Trading Day vs Calendar Day
+### Trading Day vs Calendar Day
 - **Calendar day (month day)** = all days in the calendar (30 or 31 days per month).  
 - **Trading day (month)** = only the market-open days (~22 per month).  
 
-👉 That’s why in quant finance we often use **22 trading days** as a proxy for “1 month,” not 30 calendar days.  
+That’s why in quant finance we often use **22 trading days** as a proxy for “1 month,” not 30 calendar days.  
 This avoids mixing in weekends and holidays where no trading (and no price movement) happens.
 
 ---
 
-### 🔹 Why this matters for our project
+### Why this matters for our project
 - When we create lag features like **lag_22**, we are capturing the **effect of the past month of trading**, not the past calendar month.  
 - This makes the features more consistent with how hedge funds and financial analysts think about time series.  
 - For example: “What was the ETF price 22 trading days ago?” ≈ “What was the price 1 month ago (in trading terms)?”
 
 ---
 
-## 📘 Theoretical Background — Time Series Forecasting
+## Theoretical Background — Time Series Forecasting
 
 Time series forecasting is the process of using historical data (ordered in time) to predict future values.  
 It is widely applied in **finance, energy markets, insurance, and economics**, where understanding future trends is critical for decision-making.
 
 ---
 
-### 🔹 1. Key Concepts
+### 1. Key Concepts
 - **Time Series (Yₜ):** a sequence of observations ordered in time (e.g., daily electricity prices).  
 - **Trend:** long-term increase or decrease in the series.  
 - **Seasonality:** repeating patterns (daily, weekly, yearly).  
@@ -130,7 +130,7 @@ It is widely applied in **finance, energy markets, insurance, and economics**, w
 
 ---
 
-### 🔹 2. Forecasting Approaches
+### 2. Forecasting Approaches
 1. **Statistical models**  
    - Use assumptions about data-generating processes.  
    - Examples: ARIMA, SARIMA, VAR.  
@@ -151,14 +151,14 @@ It is widely applied in **finance, energy markets, insurance, and economics**, w
 
 ---
 
-### 🔹 3. Why This Matters for Energy & Finance
+### 3. Why This Matters for Energy & Finance
 - **Energy markets**: prices depend on demand, weather, fuel costs, and policy. Forecasting helps with **hedging, risk management, and trading strategies**.  
 - **Finance & Hedge Funds**: accurate forecasts allow for **better pricing models, arbitrage opportunities, and portfolio optimization**.  
 - **Insurance & Risk Models**: time series underpin claims modeling, economic indicators, and solvency forecasting.
 
 ---
 
-## 📘 Theoretical Background — ARIMA
+## Theoretical Background — ARIMA
 
 **ARIMA (AutoRegressive Integrated Moving Average)** is a classical statistical model widely used in finance and econometrics for time series forecasting.  
 It combines three components:

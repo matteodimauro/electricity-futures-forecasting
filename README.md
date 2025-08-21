@@ -124,8 +124,8 @@ It is widely applied in **finance, energy markets, insurance, and economics**, w
 - **Noise / Shocks:** random fluctuations not explained by structure.  
 - **Stationarity:** a time series whose statistical properties (mean, variance, autocorrelation) do not change over time.  
 - **Lag:** a past value of the series used as a predictor.  
-  - Example: if today is \( t \), then \( Y_{t-1} \) is the value of yesterday (lag-1),  
-    \( Y_{t-5} \) is last week (lag-5), and \( Y_{t-22} \) is last month (lag-22).  
+  - Example: if today is $ t $, then $ Y_{t-1} $ is the value of yesterday (lag-1),  
+    $ Y_{t-5} $ is last week (lag-5), and $ Y_{t-22} $ is last month (lag-22).  
   - Lags are crucial because financial and energy data often depend strongly on their past.
 
 ---
@@ -188,7 +188,7 @@ $
 Y_t = \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + ... + \phi_p Y_{t-p} + \epsilon_t
 $
 - Current value depends on past values.  
-- Coefficients \( \phi_i \) measure persistence.
+- Coefficients $ \phi_i $ measure persistence.
 
 ---
 
@@ -197,7 +197,7 @@ $
 Y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + ... + \theta_q \epsilon_{t-q}
 $
 - Current value depends on past forecast errors.  
-- Coefficients \( \theta_j \) measure how shocks propagate.  
+- Coefficients $ \theta_j $ measure how shocks propagate.  
 
 ---
 
@@ -217,7 +217,7 @@ $
 ---
 
 ### 6. Estimation
-Parameters \( \phi_i, \theta_j \) are estimated via **Maximum Likelihood Estimation (MLE)**.
+Parameters $ \phi_i, \theta_j $ are estimated via **Maximum Likelihood Estimation (MLE)**.
 
 ---
 

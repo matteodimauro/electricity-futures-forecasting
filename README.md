@@ -6,10 +6,8 @@
 ---
 
 ## Project Structure
-- `data/` — raw & processed (ignored by git)
+- `data/` — sample of the dataset used
 - `notebooks/` — EDA and modeling
-- `src/` — pipeline, features, models, utils
-- `results/` — charts and reports (ignored by git)
 
 ---
 

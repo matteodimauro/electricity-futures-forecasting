@@ -1,4 +1,4 @@
-# Electricity Futures Forecasting 🔌📈
+# Electricity Futures Forecasting
 
 **Goal:** Forecast electricity spot/futures prices using statistical models and ML (ARIMA, LightGBM, optional LSTM).  
 **Why it matters for a hedge fund:** time series forecasting with exogenous variables (weather, demand, gas), model comparison, and out-of-sample metrics.
@@ -177,25 +177,19 @@ The model is written as **ARIMA(p, d, q)**, where:
 ### 1. Stationarity
 ARIMA assumes stationarity: the mean, variance, and autocorrelation are stable over time.  
 If the series is non-stationary (common in prices), we apply **differencing**:  
-$
-\Delta Y_t = Y_t - Y_{t-1}
-$
+$\Delta Y_t = Y_t - Y_{t-1}$
 
 ---
 
 ### 2. AR (AutoRegressive) Part
-$
-Y_t = \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + ... + \phi_p Y_{t-p} + \epsilon_t
-$
+$Y_t = \phi_1 Y_{t-1} + \phi_2 Y_{t-2} + ... + \phi_p Y_{t-p} + \epsilon_t$
 - Current value depends on past values.  
 - Coefficients \( \phi_i \) measure persistence.
 
 ---
 
 ### 3. MA (Moving Average) Part
-$
-Y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + ... + \theta_q \epsilon_{t-q}
-$
+$Y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + ... + \theta_q \epsilon_{t-q}$
 - Current value depends on past forecast errors.  
 - Coefficients \( \theta_j \) measure how shocks propagate.  
 
@@ -203,9 +197,7 @@ $
 
 ### 4. ARIMA(p, d, q)
 General form after differencing:
-$
-\Delta^d Y_t = \phi_1 \Delta^d Y_{t-1} + ... + \phi_p \Delta^d Y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}
-$
+$\Delta^d Y_t = \phi_1 \Delta^d Y_{t-1} + ... + \phi_p \Delta^d Y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}$
 
 ---
 
